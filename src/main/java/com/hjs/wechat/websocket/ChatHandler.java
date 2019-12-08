@@ -28,7 +28,8 @@ public class ChatHandler extends SimpleChannelInboundHandler<TextWebSocketFrame>
         System.out.println("接收到的数据："+content);
 
         for (Channel client : clients) {
-            client.writeAndFlush(new TextWebSocketFrame("[服务器接收到消息：]"+LocalDateTime.now()+"接收到消息：")+content);
+            String returnMsg = "[服务器接收到消息：]"+LocalDateTime.now()+"接收到消息："+content;
+            client.writeAndFlush(new TextWebSocketFrame(returnMsg));
         }
 
         //和上面的for循环是一样的
